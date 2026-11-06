@@ -29,57 +29,60 @@ function Landing() {
       </div>
 
       {/* Navbar Superior con Glassmorphism */}
-      <nav className="w-full border-b border-white/5 bg-[#0a0d14]/70 backdrop-blur-xl sticky top-0 z-50 px-4 sm:px-8 py-4 flex items-center justify-between transition-all">
-        <div className="flex items-center space-x-3 group cursor-pointer">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-purple-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-600/30 group-hover:scale-105 transition-transform">
-            BF
-          </div>
-          <span className="font-bold text-xl text-white tracking-wide bg-gradient-to-r from-white via-slate-200 to-indigo-300 bg-clip-text text-transparent">
-            ByteForge
-          </span>
-        </div>
+<nav className="w-full border-b border-white/5 bg-[#0a0d14]/70 backdrop-blur-xl sticky top-0 z-50 px-4 sm:px-8 py-4 flex items-center justify-between transition-all">
+  {/* Logo a la izquierda */}
+  <div className="flex items-center space-x-3 group cursor-pointer">
+    <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-purple-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-600/30 group-hover:scale-105 transition-transform">
+      BF
+    </div>
+    <span className="font-bold text-xl text-white tracking-wide bg-gradient-to-r from-white via-slate-200 to-indigo-300 bg-clip-text text-transparent">
+      ByteForge
+    </span>
+  </div>
 
-        <div className="hidden md:flex items-center space-x-8 text-xs font-medium text-slate-300">
-          <a href="#features" className="hover:text-indigo-400 transition-colors">{t('navFeatures') || 'Features'}</a>
-          <a href="#pricing" className="hover:text-indigo-400 transition-colors">{t('navPricing') || 'Pricing'}</a>
-          <a href="#about" className="hover:text-indigo-400 transition-colors">{t('navAbout') || 'About'}</a>
-        </div>
+  {/* Enlaces de navegación perfectamente centrados */}
+  <div className="hidden md:flex items-center space-x-8 text-xs font-medium text-slate-300 absolute left-1/2 -translate-x-1/2">
+    <a href="#features" className="hover:text-indigo-400 transition-colors">{t('navFeatures') || 'Features'}</a>
+    <a href="#pricing" className="hover:text-indigo-400 transition-colors">{t('navPricing') || 'Pricing'}</a>
+    <a href="#about" className="hover:text-indigo-400 transition-colors">{t('navAbout') || 'About'}</a>
+  </div>
 
-        <div className="flex items-center space-x-3">
-          {/* Selector de Idioma (ES / EN) */}
-          <div className="flex items-center space-x-1 bg-slate-900 border border-white/10 rounded-xl p-1">
-            <button
-              onClick={() => changeLanguage('es')}
-              className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-                lang === 'es' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-400 hover:text-white'
-              }`}
-            >
-              ES
-            </button>
-            <button
-              onClick={() => changeLanguage('en')}
-              className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
-                lang === 'en' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-400 hover:text-white'
-              }`}
-            >
-              EN
-            </button>
-          </div>
+  {/* Botones de idioma y acceso a la derecha */}
+  <div className="flex items-center space-x-3">
+    {/* Selector de Idioma (ES / EN) */}
+    <div className="flex items-center space-x-1 bg-slate-900 border border-white/10 rounded-xl p-1">
+      <button
+        onClick={() => changeLanguage('es')}
+        className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+          lang === 'es' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-400 hover:text-white'
+        }`}
+      >
+        ES
+      </button>
+      <button
+        onClick={() => changeLanguage('en')}
+        className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+          lang === 'en' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-400 hover:text-white'
+        }`}
+      >
+        EN
+      </button>
+    </div>
 
-          <Link
-            to="/login"
-            className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:text-white transition-colors"
-          >
-            {t('signIn') || 'Sign In'}
-          </Link>
-          <Link
-            to="/login"
-            className="px-4 py-2 rounded-xl text-xs font-semibold bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white shadow-lg shadow-indigo-600/30 hover:shadow-indigo-500/50 hover:scale-105 active:scale-95 transition-all"
-          >
-            {t('getStarted') || 'Get Started'}
-          </Link>
-        </div>
-      </nav>
+    <Link
+      to="/login"
+      className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:text-white transition-colors"
+    >
+      {t('signIn') || 'Sign In'}
+    </Link>
+    <Link
+      to="/login"
+      className="px-4 py-2 rounded-xl text-xs font-semibold bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white shadow-lg shadow-indigo-600/30 hover:shadow-indigo-500/50 hover:scale-105 active:scale-95 transition-all"
+    >
+      {t('getStarted') || 'Get Started'}
+    </Link>
+  </div>
+</nav>
 
       {/* Hero Section */}
       <section className="px-4 sm:px-6 lg:px-8 pt-16 sm:pt-24 pb-16 max-w-5xl mx-auto text-center space-y-6 relative">
