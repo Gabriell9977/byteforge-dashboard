@@ -187,16 +187,16 @@ export default function Users() {
 
   const getRoleBadge = (role) => {
     switch (role) {
-      case 'Admin': return 'bg-purple-500/10 text-purple-400 border border-purple-500/20';
-      case 'Editor': return 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20';
-      default: return 'bg-slate-700/50 text-slate-300 border border-slate-600/30';
+      case 'Admin': return 'bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20';
+      case 'Editor': return 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20';
+      default: return 'bg-slate-200 dark:bg-slate-700/50 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600/30';
     }
   };
 
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <div className="text-slate-400 text-sm animate-pulse">{t('loading') || 'Loading records...'}</div>
+        <div className="text-slate-500 dark:text-slate-400 text-sm animate-pulse">{t('loading') || 'Loading records...'}</div>
       </div>
     );
   }
@@ -205,9 +205,9 @@ export default function Users() {
     <div className="space-y-6 relative">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-white tracking-tight">{t('usersTitle') || 'User Management & Approvals'}</h1>
-          <p className="text-xs text-slate-400 mt-1">
-            {t('usersSubtitle') || 'Manage system users, approve pending accounts, and assign security roles.'} {!isAdmin && <span className="text-amber-400 font-semibold">(Modo Visualización)</span>}
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">{t('usersTitle') || 'User Management & Approvals'}</h1>
+          <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">
+            {t('usersSubtitle') || 'Manage system users, approve pending accounts, and assign security roles.'} {!isAdmin && <span className="text-amber-500 dark:text-amber-400 font-semibold">(Modo Visualización)</span>}
           </p>
         </div>
         {isAdmin && (
@@ -221,18 +221,18 @@ export default function Users() {
         )}
       </div>
 
-      <div className="bg-[#1e293b]/70 border border-slate-700/50 p-6 rounded-2xl backdrop-blur-md shadow-xl space-y-4">
+      <div className="bg-white dark:bg-[#1e293b]/70 border border-slate-200 dark:border-slate-700/50 p-6 rounded-2xl backdrop-blur-md shadow-xl space-y-4">
         <input
           type="text"
           placeholder={t('searchUsersPlaceholder') || 'Search by name or email...'}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full sm:w-80 px-4 py-2.5 border border-slate-700 rounded-xl text-xs bg-slate-900/80 text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className="w-full sm:w-80 px-4 py-2.5 border border-slate-300 dark:border-slate-700 rounded-xl text-xs bg-slate-50 dark:bg-slate-900/80 text-slate-900 dark:text-slate-200 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
         />
 
         <div className="overflow-x-auto w-full">
-          <table className="w-full text-left text-xs text-slate-300 min-w-[700px]">
-            <thead className="bg-slate-800/50 text-[11px] uppercase text-slate-400 border-b border-slate-700/60">
+          <table className="w-full text-left text-xs text-slate-700 dark:text-slate-300 min-w-[700px]">
+            <thead className="bg-slate-100 dark:bg-slate-800/50 text-[11px] uppercase text-slate-500 dark:text-slate-400 border-b border-slate-200 dark:border-slate-700/60">
               <tr>
                 <th className="px-4 py-3">{t('tableUser') || 'Name'}</th>
                 <th className="px-4 py-3">{t('tableEmail') || 'Email'}</th>
@@ -241,12 +241,12 @@ export default function Users() {
                 {isAdmin && <th className="px-4 py-3 text-right">{t('tableActions') || 'Actions'}</th>}
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-700/40">
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700/40">
               {filteredUsers.length > 0 ? (
                 filteredUsers.map((user) => (
-                  <tr key={user.id} className="hover:bg-slate-800/40 transition-colors">
-                    <td className="px-4 py-3.5 font-medium text-slate-200 whitespace-nowrap">{user.name}</td>
-                    <td className="px-4 py-3.5 text-slate-400 whitespace-nowrap">{user.email}</td>
+                  <tr key={user.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
+                    <td className="px-4 py-3.5 font-medium text-slate-900 dark:text-slate-200 whitespace-nowrap">{user.name}</td>
+                    <td className="px-4 py-3.5 text-slate-600 dark:text-slate-400 whitespace-nowrap">{user.email}</td>
                     <td className="px-4 py-3.5 whitespace-nowrap">
                       <span className={`px-2.5 py-1 rounded-full text-[10px] font-semibold ${getRoleBadge(user.role)}`}>
                         {user.role || 'Viewer'}
@@ -255,8 +255,8 @@ export default function Users() {
                     <td className="px-4 py-3.5 whitespace-nowrap">
                       <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-semibold ${
                         user.status === 'Active' 
-                          ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' 
-                          : 'bg-amber-500/10 text-amber-400 border border-amber-500/20 animate-pulse'
+                          ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20' 
+                          : 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 animate-pulse'
                       }`}>
                         {user.status || 'Pending'}
                       </span>
@@ -267,21 +267,21 @@ export default function Users() {
                           onClick={() => handleToggleStatus(user)}
                           className={`px-3 py-1 rounded-lg text-[11px] font-semibold transition-all cursor-pointer ${
                             user.status === 'Active'
-                              ? 'bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/20'
-                              : 'bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/20'
+                              ? 'bg-amber-500/10 hover:bg-amber-500/20 text-amber-600 dark:text-amber-400 border border-amber-500/20'
+                              : 'bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20'
                           }`}
                         >
                           {user.status === 'Active' ? (t('pauseBtn') || 'Pausar') : (t('approveBtn') || '✓ Aprobar')}
                         </button>
                         <button
                           onClick={() => handleOpenEditModal(user)}
-                          className="inline-flex items-center space-x-1 text-indigo-400 hover:text-indigo-300 font-medium text-xs cursor-pointer"
+                          className="inline-flex items-center space-x-1 text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 font-medium text-xs cursor-pointer"
                         >
                           <span>{t('editBtn') || 'Edit'}</span>
                         </button>
                         <button
                           onClick={() => handleDeleteUser(user.id, user.name)}
-                          className="inline-flex items-center space-x-1 text-rose-400 hover:text-rose-300 font-medium text-xs cursor-pointer"
+                          className="inline-flex items-center space-x-1 text-rose-600 dark:text-rose-400 hover:text-rose-500 dark:hover:text-rose-300 font-medium text-xs cursor-pointer"
                         >
                           <span>{t('deleteBtn') || 'Delete'}</span>
                         </button>
@@ -291,7 +291,7 @@ export default function Users() {
                 ))
               ) : (
                 <tr>
-                  <td colSpan={isAdmin ? 5 : 4} className="px-4 py-6 text-center text-slate-400">
+                  <td colSpan={isAdmin ? 5 : 4} className="px-4 py-6 text-center text-slate-500 dark:text-slate-400">
                     No users found matching "{search}".
                   </td>
                 </tr>
@@ -303,39 +303,39 @@ export default function Users() {
 
       {isModalOpen && isAdmin && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-          <div className="bg-[#1e293b] rounded-2xl p-6 w-full max-w-md shadow-2xl border border-slate-700/80 space-y-4">
-            <h2 className="text-lg font-bold text-white">
+          <div className="bg-white dark:bg-[#1e293b] rounded-2xl p-6 w-full max-w-md shadow-2xl border border-slate-200 dark:border-slate-700/80 space-y-4">
+            <h2 className="text-lg font-bold text-slate-900 dark:text-white">
               {editingUserId ? (t('editUserTitle') || 'Edit User') : (t('addUserTitle') || 'Add New User')}
             </h2>
             <form onSubmit={handleSaveUser} className="space-y-4">
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">{t('fullNameLabel') || 'Full Name'}</label>
+                <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">{t('fullNameLabel') || 'Full Name'}</label>
                 <input
                   type="text"
                   required
                   value={newName}
                   onChange={(e) => setNewName(e.target.value)}
                   placeholder="e.g. Sofia Martinez"
-                  className="w-full px-4 py-2 border border-slate-700 rounded-xl text-xs bg-slate-900 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full px-4 py-2 border border-slate-300 dark:border-slate-700 rounded-xl text-xs bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">{t('emailAddressLabel') || 'Email Address'}</label>
+                <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">{t('emailAddressLabel') || 'Email Address'}</label>
                 <input
                   type="email"
                   required
                   value={newEmail}
                   onChange={(e) => setNewEmail(e.target.value)}
                   placeholder="e.g. sofia@byteforge.dev"
-                  className="w-full px-4 py-2 border border-slate-700 rounded-xl text-xs bg-slate-900 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full px-4 py-2 border border-slate-300 dark:border-slate-700 rounded-xl text-xs bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">{t('tableRole') || 'Role'}</label>
+                <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">{t('tableRole') || 'Role'}</label>
                 <select
                   value={newRole}
                   onChange={(e) => setNewRole(e.target.value)}
-                  className="w-full px-4 py-2 border border-slate-700 rounded-xl text-xs bg-slate-900 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full px-4 py-2 border border-slate-300 dark:border-slate-700 rounded-xl text-xs bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 >
                   <option value="Viewer">Viewer</option>
                   <option value="Editor">Editor</option>
@@ -343,11 +343,11 @@ export default function Users() {
                 </select>
               </div>
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">{t('tableStatus') || 'Status'}</label>
+                <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">{t('tableStatus') || 'Status'}</label>
                 <select
                   value={newStatus}
                   onChange={(e) => setNewStatus(e.target.value)}
-                  className="w-full px-4 py-2 border border-slate-700 rounded-xl text-xs bg-slate-900 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full px-4 py-2 border border-slate-300 dark:border-slate-700 rounded-xl text-xs bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 >
                   <option value="Active">Active</option>
                   <option value="Pending">Pending</option>
@@ -358,7 +358,7 @@ export default function Users() {
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="px-4 py-2 text-xs font-medium text-slate-400 hover:bg-slate-800 rounded-xl transition-colors cursor-pointer"
+                  className="px-4 py-2 text-xs font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors cursor-pointer"
                 >
                   {t('cancelBtn') || 'Cancel'}
                 </button>

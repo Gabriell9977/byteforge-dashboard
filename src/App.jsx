@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { LanguageProvider } from './context/LanguageContext'; // Proveedor de multiidioma
 import Landing from './pages/Landing';
 import Login from './pages/Login';
@@ -14,8 +14,23 @@ import Settings from './pages/Settings';
 import './App.css';
 
 function App() {
-  const [darkMode, setDarkMode] = useState(true);
+  // Inicializamos darkMode desde localStorage (por defecto true/dark)
+  const [darkMode, setDarkMode] = useState(() => {
+    const saved = localStorage.getItem('byteforge_theme');
+    return saved !== null ? JSON.parse(saved) : true;
+  });
+
   const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('token'));
+
+  // Sincronizamos con localStorage y la clase "dark" del HTML
+  useEffect(() => {
+    localStorage.setItem('byteforge_theme', JSON.stringify(darkMode));
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [darkMode]);
 
   const handleLogin = () => setIsAuthenticated(true);
   const handleLogout = () => {
