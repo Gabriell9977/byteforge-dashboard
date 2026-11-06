@@ -1,0 +1,18 @@
+{
+  "users": [
+    {
+      "id": "admin-default-id",
+      "name": "Administrador",
+      "email": "administrador@byteforge.dev",
+      "password": "$2a$10$8hGoqqIEX/gEynGFQo5SJuK7Byf2N9rE8Gyu0SipMV/NA1f5yf0PG",
+      "role": "Admin"
+    },
+    {
+      "id": "1793471377997",
+      "name": "Gabriel Marte",
+      "email": "nucleonikedc.12@gmail.com",
+      "password": "$2a$10$VwGLUkI/51K7gjQ5qv90heFqkKomqcpTgwj6sosbEzwN6ZvFSoP7K",
+      "role": "Admin"
+    }
+  ]
+}
