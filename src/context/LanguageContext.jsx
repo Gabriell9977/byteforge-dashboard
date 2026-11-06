@@ -1,20 +1,27 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import { translations } from '../translations';
 
 const LanguageContext = createContext();
 
 export function LanguageProvider({ children }) {
-  // Idioma por defecto almacenado o español por defecto
-  const [lang, setLang] = useState(localStorage.getItem('byteforge_lang') || 'es');
+  // Inicializamos el idioma leyendo primero el localStorage
+  const [lang, setLang] = useState(() => {
+    return localStorage.getItem('byteforge_lang') || 'es';
+  });
+
+  // Guardamos en localStorage cada vez que la variable 'lang' cambie
+  useEffect(() => {
+    localStorage.setItem('byteforge_lang', lang);
+  }, [lang]);
 
   const changeLanguage = (newLang) => {
     setLang(newLang);
-    localStorage.setItem('byteforge_lang', newLang);
   };
 
-  // Función traductora limpia
+  // Función traductora limpia y robusta
   const t = (key) => {
-    return translations[lang]?.[key] || translations['es']?.[key] || key;
+    // Busca la clave en el idioma actual -> luego en inglés como fallback universal -> retorna la clave si no la encuentra
+    return translations[lang]?.[key] || translations['en']?.[key] || key;
   };
 
   return (

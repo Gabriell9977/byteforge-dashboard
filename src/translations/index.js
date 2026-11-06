@@ -82,7 +82,7 @@ export const translations = {
     date: "Date",
     noTransactionsFound: "No transactions matching",
 
-    // Register Page
+    // Register Page & Toasts
     registerTitle: "Request Workspace Access",
     registerSubtitle: "Register a new account to request server approval",
     fullNameLabel: "FULL NAME",
@@ -94,16 +94,25 @@ export const translations = {
     namePlaceholder: "e.g. Alex Smith",
     emailPlaceholder: "name@company.com",
     passwordPlaceholder: "••••••••",
+    registerSuccessMsg: "Access request submitted successfully! Awaiting server approval.",
+    registerSuccessTitle: "Registration Successful!",
+    registerSuccessText: "Your account has been created on the server and is currently",
+    pendingApproval: "pending approval",
+    registerSuccessTextEnd: "by an administrator. Once approved, you will be able to sign in.",
+    goToLogin: "Go to Sign In",
 
-    // Login Page
+    // Login Page & Toasts
     welcomeBack: "Welcome back",
     enterCredentials: "Enter your credentials to access your dashboard",
     forgotPassword: "Forgot password?",
     signInDashboard: "Sign In to Dashboard →",
     dontHaveAccount: "Don't have an account?",
     requestAccess: "Request access",
+    loginErrorMsg: "Invalid credentials or account pending approval.",
+    enterEmailFirst: "Please enter your email address first.",
+    recoveryInstructionsSent: "Password reset instructions sent to your email address.",
 
-    // Reset Password Page
+    // Reset Password Page & Toasts
     resetPasswordTitle: "Reset Password",
     resetPasswordSubtitle: "Enter your new password below",
     newPasswordLabel: "NEW PASSWORD",
@@ -113,6 +122,8 @@ export const translations = {
     resetSuccessTitle: "Password Updated!",
     resetSuccessText: "Your password has been successfully reset. You can now log in.",
     backToLogin: "← Back to Login",
+    resetEmailSentMsg: "Password reset instructions have been sent to your email.",
+    passwordUpdatedMsg: "Password updated successfully! You can now sign in.",
 
     // Analytics Page
     analyticsTitle: "Analytics Overview",
@@ -126,7 +137,7 @@ export const translations = {
     uniqueVisitors: "Unique Visitors",
     pageViews: "Page Views",
 
-    // Users Management Page
+    // Users Management Page & Toasts
     usersTitle: "User Management",
     usersSubtitle: "Approve, suspend, or manage platform access permissions.",
     searchUsersPlaceholder: "Search by name or email...",
@@ -148,8 +159,20 @@ export const translations = {
     cancelBtn: "Cancel",
     saveChangesBtn: "Save Changes",
     saveUserBtn: "Save User",
+    adminActionDenied: "Access denied: Administrator privileges required.",
+    readOnlyPermission: "Access denied: Your account has read-only permissions.",
+    deletePermissionDenied: "Access denied: You do not have permission to delete users.",
+    syncErrorMsg: "Error synchronizing with backend.",
+    userStatusPrefix: "User",
+    isNowPrefix: "is now",
+    userUpdatedPrefix: "User",
+    updatedSuccessSuffix: "updated successfully.",
+    userCreatedPrefix: "User",
+    createdSuccessSuffix: "created successfully.",
+    userRemovedPrefix: "User",
+    removedSuccessSuffix: "removed.",
 
-    // Billing Page
+    // Billing Page & Toasts
     billingTitle: "Billing & Subscriptions",
     billingSubtitle: "Manage your active subscription plan and payment methods.",
     currentSubscription: "Current Subscription",
@@ -170,7 +193,7 @@ export const translations = {
     subscriptionUpgradedMsg: "Subscription updated successfully!",
     openingCardManagerMsg: "Opening secure card manager...",
 
-    // Settings Page
+    // Settings Page & Toasts
     settingsTitle: "System & Profile Settings",
     settingsSubtitle: "Update workspace details and notification preferences.",
     personalInfoTitle: "Personal Information",
@@ -181,6 +204,7 @@ export const translations = {
     emailReportsDesc: "Receive weekly traffic and revenue digests.",
     securityAlertsTitle: "Security Alerts",
     securityAlertsDesc: "Get notified when new login activity occurs.",
+    settingsSavedMsg: "Profile and workspace settings successfully saved!",
   },
   es: {
     dashboard: "Panel Principal",
@@ -265,7 +289,7 @@ export const translations = {
     date: "Fecha",
     noTransactionsFound: "No se encontraron transacciones que coincidan con",
 
-    // Register Page
+    // Register Page & Toasts
     registerTitle: "Solicitar Acceso al Espacio de Trabajo",
     registerSubtitle: "Registra una nueva cuenta para solicitar aprobación del servidor",
     fullNameLabel: "NOMBRE COMPLETO",
@@ -277,16 +301,25 @@ export const translations = {
     namePlaceholder: "ej. Juan Pérez",
     emailPlaceholder: "correo@empresa.com",
     passwordPlaceholder: "••••••••",
+    registerSuccessMsg: "¡Solicitud de acceso enviada con éxito! Esperando aprobación del servidor.",
+    registerSuccessTitle: "¡Registro Exitoso!",
+    registerSuccessText: "Tu cuenta ha sido creada en el servidor y se encuentra",
+    pendingApproval: "pendiente de aprobación",
+    registerSuccessTextEnd: "por un administrador. Una vez aprobada, podrás iniciar sesión.",
+    goToLogin: "Ir a Iniciar Sesión",
 
-    // Login Page
+    // Login Page & Toasts
     welcomeBack: "Bienvenido de nuevo",
     enterCredentials: "Ingresa tus credenciales para acceder a tu panel",
     forgotPassword: "¿Olvidaste tu contraseña?",
     signInDashboard: "Iniciar Sesión en el Panel →",
     dontHaveAccount: "¿No tienes una cuenta?",
     requestAccess: "Solicitar acceso",
+    loginErrorMsg: "Credenciales inválidas o cuenta pendiente de aprobación.",
+    enterEmailFirst: "Por favor, ingresa tu correo electrónico primero.",
+    recoveryInstructionsSent: "Instrucciones de recuperación enviadas a tu correo electrónico.",
 
-    // Reset Password Page
+    // Reset Password Page & Toasts
     resetPasswordTitle: "Restablecer Contraseña",
     resetPasswordSubtitle: "Ingresa tu nueva contraseña a continuación",
     newPasswordLabel: "NUEVA CONTRASEÑA",
@@ -296,6 +329,8 @@ export const translations = {
     resetSuccessTitle: "¡Contraseña Actualizada!",
     resetSuccessText: "Tu contraseña ha sido restablecida correctamente. Ya puedes acceder.",
     backToLogin: "← Volver al inicio de sesión",
+    resetEmailSentMsg: "Se han enviado las instrucciones de recuperación a tu correo.",
+    passwordUpdatedMsg: "¡Contraseña actualizada con éxito! Ya puedes iniciar sesión.",
 
     // Analytics Page
     analyticsTitle: "Resumen de Analíticas",
@@ -309,7 +344,7 @@ export const translations = {
     uniqueVisitors: "Visitantes Únicos",
     pageViews: "Vistas de Página",
 
-    // Users Management Page
+    // Users Management Page & Toasts
     usersTitle: "Gestión de Usuarios",
     usersSubtitle: "Aprueba, suspende o gestiona los permisos de acceso a la plataforma.",
     searchUsersPlaceholder: "Buscar por nombre o correo...",
@@ -331,8 +366,20 @@ export const translations = {
     cancelBtn: "Cancelar",
     saveChangesBtn: "Guardar Cambios",
     saveUserBtn: "Guardar Usuario",
+    adminActionDenied: "Acción denegada: Se requieren privilegios de Administrador.",
+    readOnlyPermission: "Acción denegada: Tu cuenta tiene permisos de lectura.",
+    deletePermissionDenied: "Acción denegada: No tienes permisos para eliminar usuarios.",
+    syncErrorMsg: "Error al sincronizar con el backend.",
+    userStatusPrefix: "El usuario",
+    isNowPrefix: "ahora está",
+    userUpdatedPrefix: "El usuario",
+    updatedSuccessSuffix: "se actualizó con éxito.",
+    userCreatedPrefix: "El usuario",
+    createdSuccessSuffix: "se creó con éxito.",
+    userRemovedPrefix: "El usuario",
+    removedSuccessSuffix: "fue eliminado.",
 
-    // Billing Page
+    // Billing Page & Toasts
     billingTitle: "Facturación y Suscripciones",
     billingSubtitle: "Gestiona tu plan de suscripción activo y métodos de pago.",
     currentSubscription: "Suscripción Actual",
@@ -353,7 +400,7 @@ export const translations = {
     subscriptionUpgradedMsg: "¡Suscripción actualizada con éxito!",
     openingCardManagerMsg: "Abriendo gestor de tarjetas seguro...",
 
-    // Settings Page
+    // Settings Page & Toasts
     settingsTitle: "Configuración del Sistema y Perfil",
     settingsSubtitle: "Actualiza los detalles del espacio de trabajo y las preferencias de notificación.",
     personalInfoTitle: "Información Personal",
@@ -364,5 +411,6 @@ export const translations = {
     emailReportsDesc: "Recibe resúmenes semanales de tráfico e ingresos.",
     securityAlertsTitle: "Alertas de Seguridad",
     securityAlertsDesc: "Recibe notificaciones cuando ocurra nueva actividad de inicio de sesión.",
+    settingsSavedMsg: "¡Ajustes de perfil y espacio de trabajo guardados con éxito!",
   }
 };

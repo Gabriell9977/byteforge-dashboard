@@ -25,7 +25,6 @@ export default function Users() {
 
   const { t } = useLanguage();
 
-  // Obtenemos el usuario autenticado y evaluamos su rol
   const storedUser = JSON.parse(localStorage.getItem('user')) || { role: 'Viewer' };
   const isAdmin = storedUser.role === 'Admin';
 
@@ -80,7 +79,7 @@ export default function Users() {
 
   const handleToggleStatus = async (user) => {
     if (!isAdmin) {
-      setToastMessage(t('adminActionDenied') || 'Acción denegada: Se requieren privilegios de Administrador.');
+      setToastMessage('adminActionDenied');
       return;
     }
 
@@ -93,21 +92,21 @@ export default function Users() {
         body: JSON.stringify({ status: nextStatus })
       });
 
-      if (!response.ok) throw new Error('Error al actualizar estado en el servidor');
+      if (!response.ok) throw new Error('Error al actualizar estado');
 
       const updated = users.map(u => u.id === user.id ? { ...u, status: nextStatus } : u);
       saveUsersToStorage(updated);
-      setToastMessage(`User ${user.name} is now ${nextStatus}.`);
+      setToastMessage(`userStatusUpdated:${user.name}:${nextStatus}`);
     } catch (err) {
       const updated = users.map(u => u.id === user.id ? { ...u, status: nextStatus } : u);
       saveUsersToStorage(updated);
-      setToastMessage(`User updated locally to ${nextStatus}.`);
+      setToastMessage(`userStatusUpdated:${user.name}:${nextStatus}`);
     }
   };
 
   const handleOpenAddModal = () => {
     if (!isAdmin) {
-      setToastMessage(t('adminActionDenied') || 'Acción denegada: Se requieren privilegios de Administrador.');
+      setToastMessage('adminActionDenied');
       return;
     }
     setEditingUserId(null);
@@ -120,7 +119,7 @@ export default function Users() {
 
   const handleOpenEditModal = (user) => {
     if (!isAdmin) {
-      setToastMessage(t('readOnlyPermission') || 'Acción denegada: Tu cuenta tiene permisos de lectura.');
+      setToastMessage('readOnlyPermission');
       return;
     }
     setEditingUserId(user.id);
@@ -147,7 +146,7 @@ export default function Users() {
 
         const updated = users.map(u => u.id === editingUserId ? { ...u, name: newName, email: newEmail, role: newRole, status: newStatus } : u);
         saveUsersToStorage(updated);
-        setToastMessage(`User ${newName} updated successfully.`);
+        setToastMessage(`userUpdatedSuccess:${newName}`);
       } else {
         const newUser = {
           id: Date.now().toString(),
@@ -157,17 +156,17 @@ export default function Users() {
           status: newStatus
         };
         saveUsersToStorage([newUser, ...users]);
-        setToastMessage(`User ${newName} created successfully.`);
+        setToastMessage(`userCreatedSuccess:${newName}`);
       }
     } catch (err) {
-      setToastMessage('Error al sincronizar con el backend.');
+      setToastMessage('syncErrorMsg');
     }
     setIsModalOpen(false);
   };
 
   const handleDeleteUser = async (id, name) => {
     if (!isAdmin) {
-      setToastMessage(t('deletePermissionDenied') || 'Acción denegada: No tienes permisos para eliminar usuarios.');
+      setToastMessage('deletePermissionDenied');
       return;
     }
     if (window.confirm(`Are you sure you want to delete user ${name}?`)) {
@@ -182,7 +181,7 @@ export default function Users() {
 
       const updated = users.filter(u => u.id !== id);
       saveUsersToStorage(updated);
-      setToastMessage(`User ${name} removed.`);
+      setToastMessage(`userRemovedSuccess:${name}`);
     }
   };
 
@@ -375,13 +374,9 @@ export default function Users() {
         </div>
       )}
 
-      {toastMessage && Toast ? (
+      {toastMessage && (
         <Toast message={toastMessage} onClose={() => setToastMessage(null)} />
-      ) : toastMessage ? (
-        <div className="fixed bottom-5 right-5 bg-indigo-600 text-white text-xs px-4 py-3 rounded-xl shadow-xl z-50">
-          {toastMessage}
-        </div>
-      ) : null}
+      )}
     </div>
   );
 }

@@ -16,11 +16,13 @@ function Billing() {
   const { t } = useLanguage();
 
   const handleDownload = (id) => {
-    setToastMessage(`${t('downloadingInvoiceMsg') || 'Descargando factura'} ${id}...`);
+    // Pasamos la llave base y el ID como un objeto o string dinámico que el Toast procesará
+    setToastMessage(`downloadingInvoiceMsg:${id}`);
   };
 
   const handleUpgrade = () => {
-    setToastMessage(t('subscriptionUpgradedMsg') || '¡Suscripción actualizada con éxito!');
+    // Pasamos directamente la llave de traducción
+    setToastMessage('subscriptionUpgradedMsg');
   };
 
   return (
@@ -66,7 +68,7 @@ function Billing() {
           </div>
           <div>
             <button
-              onClick={() => setToastMessage(t('openingCardManagerMsg') || 'Abriendo gestor de tarjetas seguro...')}
+              onClick={() => setToastMessage('openingCardManagerMsg')}
               className="text-indigo-400 hover:text-indigo-300 font-semibold text-xs cursor-pointer"
             >
               {t('updatePaymentDetails') || 'Update Payment Details'}

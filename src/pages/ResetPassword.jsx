@@ -12,13 +12,13 @@ function ResetPassword() {
   const [toastMessage, setToastMessage] = useState(null);
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
-  const { t } = useLanguage();
+  const { t, lang, changeLanguage } = useLanguage();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
     if (password !== confirmPassword) {
-      setToastMessage(t('passwordsDoNotMatch') || 'Las contraseñas no coinciden.');
+      setToastMessage('passwordsDoNotMatch');
       return;
     }
 
@@ -50,6 +50,27 @@ function ResetPassword() {
   if (success) {
     return (
       <div className="min-h-[100dvh] w-full max-w-[100vw] overflow-x-hidden bg-[#0a0d14] text-slate-100 font-sans selection:bg-indigo-500 selection:text-white relative flex items-center justify-center px-4">
+        
+        {/* Selector de Idioma Flotante */}
+        <div className="absolute top-6 right-6 flex items-center space-x-1 bg-slate-900/80 border border-white/10 rounded-xl p-1 backdrop-blur-md z-50">
+          <button
+            onClick={() => changeLanguage('es')}
+            className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+              lang === 'es' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            ES
+          </button>
+          <button
+            onClick={() => changeLanguage('en')}
+            className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+              lang === 'en' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            EN
+          </button>
+        </div>
+
         <div className="w-full max-w-md p-8 rounded-2xl border border-white/10 bg-slate-900/70 shadow-2xl backdrop-blur-2xl relative space-y-6 text-center">
           <div className="w-12 h-12 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto text-xl">
             ✓
@@ -74,6 +95,26 @@ function ResetPassword() {
   return (
     <div className="min-h-[100dvh] w-full max-w-[100vw] overflow-x-hidden bg-[#0a0d14] text-slate-100 font-sans selection:bg-indigo-500 selection:text-white relative flex items-center justify-center px-4">
       
+      {/* Selector de Idioma Flotante */}
+      <div className="absolute top-6 right-6 flex items-center space-x-1 bg-slate-900/80 border border-white/10 rounded-xl p-1 backdrop-blur-md z-50">
+        <button
+          onClick={() => changeLanguage('es')}
+          className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+            lang === 'es' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-400 hover:text-white'
+          }`}
+        >
+          ES
+        </button>
+        <button
+          onClick={() => changeLanguage('en')}
+          className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+            lang === 'en' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-400 hover:text-white'
+          }`}
+        >
+          EN
+        </button>
+      </div>
+
       <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
         <div className="absolute -top-[30%] -left-[10%] w-[120%] h-[120%] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-900/30 via-purple-900/20 to-[#0a0d14] animate-pulse duration-1000" />
         <div className="absolute top-10 left-1/3 w-[500px] h-[500px] bg-purple-600/25 rounded-full blur-[140px] animate-pulse" />

@@ -4,7 +4,6 @@ import { Icons } from '../components/Icons';
 import { useLanguage } from '../context/LanguageContext';
 
 function Settings() {
-  // Obtenemos el usuario autenticado actualmente de la sesión
   const currentUser = JSON.parse(localStorage.getItem('user')) || { 
     name: 'Gabriel Marte', 
     email: 'gabriel@byteforge.dev', 
@@ -22,16 +21,15 @@ function Settings() {
   const handleSave = (e) => {
     e.preventDefault();
     
-    // Actualizamos el usuario en la sesión actual
     const updatedUser = { ...currentUser, name, email };
     localStorage.setItem('user', JSON.stringify(updatedUser));
 
-    // Actualizamos también su información en la lista global de usuarios
     const storedUsers = JSON.parse(localStorage.getItem('byteforge_system_users')) || [];
     const updatedUsers = storedUsers.map(u => u.email === currentUser.email ? updatedUser : u);
     localStorage.setItem('byteforge_system_users', JSON.stringify(updatedUsers));
 
-    setToastMessage(t('settingsSavedMsg') || '¡Ajustes de perfil y espacio de trabajo guardados con éxito!');
+    // Usamos la llave directa para mantener la reactividad del idioma
+    setToastMessage('settingsSavedMsg');
   };
 
   return (
@@ -117,13 +115,9 @@ function Settings() {
         </div>
       </div>
 
-      {toastMessage && Toast ? (
+      {toastMessage && (
         <Toast message={toastMessage} onClose={() => setToastMessage(null)} />
-      ) : toastMessage ? (
-        <div className="fixed bottom-5 right-5 bg-indigo-600 text-white text-xs px-4 py-3 rounded-xl shadow-xl z-50">
-          {toastMessage}
-        </div>
-      ) : null}
+      )}
     </div>
   );
 }

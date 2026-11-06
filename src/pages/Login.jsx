@@ -46,7 +46,7 @@ function Login({ onLogin }) {
   const handleForgotPassword = async (e) => {
     e.preventDefault();
     if (!email) {
-      setToastMessage(t('enterEmailFirst') || 'Por favor, ingresa tu correo electrónico primero.');
+      setToastMessage('enterEmailFirst');
       return;
     }
 
@@ -60,7 +60,7 @@ function Login({ onLogin }) {
       const data = await response.json();
       if (!response.ok) throw new Error(data.message || 'Error al solicitar recuperación.');
 
-      setToastMessage(t('recoveryInstructionsSent') || 'Instrucciones de recuperación enviadas a tu correo electrónico.');
+      setToastMessage('recoveryInstructionsSent');
     } catch (err) {
       setToastMessage(err.message || 'Error al conectar con el servidor.');
     }

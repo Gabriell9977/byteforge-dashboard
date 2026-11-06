@@ -19,7 +19,6 @@ function Register() {
     setLoading(true);
 
     try {
-      // Petición real al endpoint de autenticación del backend
       const response = await fetch(`${API_URL}/api/auth/register`, {
         method: 'POST',
         headers: {
@@ -34,7 +33,6 @@ function Register() {
         throw new Error(data.message || 'Error al registrar la cuenta en el servidor.');
       }
 
-      // Si el registro en el backend fue exitoso, mostramos la pantalla de éxito / pendiente de aprobación
       setSuccessRegistered(true);
     } catch (err) {
       setToastMessage(err.message || 'Error de conexión con el servidor backend.');
@@ -43,7 +41,6 @@ function Register() {
     }
   };
 
-  // Si se registró con éxito, mostramos una vista limpia indicando que está pendiente de validación
   if (successRegistered) {
     return (
       <div className="min-h-[100dvh] w-full max-w-[100vw] overflow-x-hidden bg-[#0a0d14] text-slate-100 font-sans selection:bg-indigo-500 selection:text-white relative flex items-center justify-center px-4">
