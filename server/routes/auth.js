@@ -6,9 +6,9 @@ const User = require('../models/User');
 
 const JWT_SECRET = process.env.JWT_SECRET || 'byteforge_super_secret_key_2026';
 
-// ==========================================
+// 
 // 1. RUTA DE REGISTRO
-// ==========================================
+// 
 router.post('/register', async (req, res) => {
   try {
     const { email, password, name } = req.body;
@@ -17,13 +17,13 @@ router.post('/register', async (req, res) => {
       return res.status(400).json({ error: 'Todos los campos son obligatorios.' });
     }
 
-    // Verificar si el usuario ya existe
+    // Verifica si el usuario ya existe
     const existingUser = await User.findOne({ email: email.toLowerCase() });
     if (existingUser) {
       return res.status(400).json({ error: 'Ya existe un usuario registrado con este correo.' });
     }
 
-    // Encriptar contraseña
+    // Encripta contraseña
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
@@ -48,9 +48,9 @@ router.post('/register', async (req, res) => {
   }
 });
 
-// ==========================================
+// 
 // 2. RUTA DE LOGIN
-// ==========================================
+// 
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -103,9 +103,9 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// ==========================================
+// 
 // 3. RUTA DE RECUPERACIÓN DE CONTRASEÑA
-// ==========================================
+// 
 router.post('/forgot-password', async (req, res) => {
   try {
     const { email } = req.body;

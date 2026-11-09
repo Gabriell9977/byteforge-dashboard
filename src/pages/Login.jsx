@@ -89,7 +89,7 @@ function Login({ onLogin }) {
         </button>
       </div>
 
-      {/* ================= BACKGROUND NEÓN & ORBES ================= */}
+      {/*  BACKGROUND NEÓN & ORBES */}
       <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
         <div className="absolute -top-[30%] -left-[10%] w-[120%] h-[120%] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-900/30 via-purple-900/20 to-[#0a0d14] animate-pulse duration-1000" />
         <div className="absolute top-10 left-1/3 w-[500px] h-[500px] bg-purple-600/25 rounded-full blur-[140px] animate-pulse" />

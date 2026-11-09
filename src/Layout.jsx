@@ -8,7 +8,7 @@ function Layout({ darkMode, setDarkMode, onLogout }) {
   const location = useLocation();
   const { t, lang, changeLanguage } = useLanguage();
 
-  // Sincronizar la clase 'dark' en el elemento raíz <html> del documento globalmente
+  // Sincroniza la clase 'dark' en el elemento raíz <html> del documento globalmente
   useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add('dark');

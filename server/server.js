@@ -44,9 +44,9 @@ const authLimiter = rateLimit({
   message: { error: 'Too many requests, please try again later.' }
 });
 
-// ==========================================
+// 
 // INICIALIZACIÓN DE LA BASE DE DATOS (DB SEED)
-// ==========================================
+// 
 const initDB = async () => {
   let db = { users: [] };
   if (fs.existsSync(DB_FILE)) {
@@ -76,7 +76,7 @@ const initDB = async () => {
     });
     fs.writeFileSync(DB_FILE, JSON.stringify(db, null, 2));
   } else {
-    // Aseguramos que el admin principal siempre esté activo y verificado
+    // Asegura que el admin principal siempre esté activo y verificado
     if (db.users[adminIndex].role !== 'Admin' || db.users[adminIndex].status !== 'Active') {
       db.users[adminIndex].role = 'Admin';
       db.users[adminIndex].status = 'Active';
@@ -89,9 +89,9 @@ const initDB = async () => {
 const readDB = () => JSON.parse(fs.readFileSync(DB_FILE, 'utf-8'));
 const writeDB = (data) => fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2));
 
-// ==========================================
+// 
 // MIDDLEWARES DE SEGURIDAD Y RBAC
-// ==========================================
+// 
 const authenticateToken = (req, res, next) => {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
@@ -121,9 +121,9 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'healthy', timestamp: new Date().toISOString() });
 });
 
-// ==========================================
+// 
 // 1. RUTA DE REGISTRO
-// ==========================================
+// 
 app.post('/api/auth/register', authLimiter, async (req, res, next) => {
   try {
     const { email, password, name } = req.body;
@@ -164,9 +164,9 @@ app.post('/api/auth/register', authLimiter, async (req, res, next) => {
   }
 });
 
-// ==========================================
+// 
 // 2. RUTA DE LOGIN (Con validación de estado)
-// ==========================================
+// 
 app.post('/api/auth/login', authLimiter, async (req, res, next) => {
   try {
     const { email, password } = req.body;
@@ -212,9 +212,9 @@ app.post('/api/auth/login', authLimiter, async (req, res, next) => {
   }
 });
 
-// ==========================================
+// 
 // 3. RECUPERACIÓN Y RESTABLECIMIENTO DE CONTRASEÑA
-// ==========================================
+// 
 app.post('/api/auth/forgot-password', authLimiter, (req, res, next) => {
   try {
     const { email } = req.body;
@@ -225,12 +225,12 @@ app.post('/api/auth/forgot-password', authLimiter, (req, res, next) => {
     const db = readDB();
     const user = db.users.find(u => u.email.toLowerCase() === email.toLowerCase());
 
-    // Por seguridad (mitigación de enumeración), respondemos éxito genérico aunque no exista
+    // Por seguridad (mitigación de enumeración), responde éxito genérico aunque no exista
     if (!user) {
       return res.json({ success: true, message: 'If the email exists, password reset instructions have been sent.' });
     }
 
-    // Generar token criptográfico único con expiración de 15 minutos
+    // Genera token criptográfico único con expiración de 15 minutos
     const resetToken = crypto.randomBytes(32).toString('hex');
     user.resetPasswordToken = resetToken;
     user.resetPasswordExpires = Date.now() + 15 * 60 * 1000;
@@ -265,7 +265,7 @@ app.post('/api/auth/reset-password', authLimiter, async (req, res, next) => {
       return res.status(400).json({ error: 'Invalid or expired password reset token.' });
     }
 
-    // Encriptar la nueva contraseña con bcrypt
+    // Encripta la nueva contraseña con bcrypt
     const hashedPassword = await bcrypt.hash(newPassword, 10);
     user.password = hashedPassword;
     user.resetPasswordToken = null;
@@ -278,9 +278,9 @@ app.post('/api/auth/reset-password', authLimiter, async (req, res, next) => {
   }
 });
 
-// ==========================================
+// 
 // 4. RUTAS DE GESTIÓN DE USUARIOS (Admin)
-// ==========================================
+// 
 app.get('/api/users', authenticateToken, requireAdmin, (req, res, next) => {
   try {
     const db = readDB();

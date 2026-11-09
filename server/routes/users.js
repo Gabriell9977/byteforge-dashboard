@@ -5,9 +5,9 @@ const User = require('../models/User');
 
 const JWT_SECRET = process.env.JWT_SECRET || 'byteforge_super_secret_key_2026';
 
-// ==========================================
+// 
 // MIDDLEWARE DE AUTENTICACIÓN Y ROL DE ADMIN
-// ==========================================
+// 
 const verifyAdmin = async (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;
@@ -18,13 +18,13 @@ const verifyAdmin = async (req, res, next) => {
     const token = authHeader.split(' ')[1];
     const decoded = jwt.verify(token, JWT_SECRET);
 
-    // Verificamos que el usuario exista en la base de datos y sea Admin
+    // Verifica que el usuario exista en la base de datos y sea Admin
     const user = await User.findById(decoded.userId);
     if (!user || user.role !== 'Admin') {
       return res.status(403).json({ error: 'Acceso prohibido: Se requieren privilegios de Administrador.' });
     }
 
-    req.user = user; // Adjuntamos el usuario a la petición
+    req.user = user; // Adjunta el usuario a la petición
     next();
   } catch (err) {
     console.error('Error de autenticación:', err);
@@ -32,12 +32,12 @@ const verifyAdmin = async (req, res, next) => {
   }
 };
 
-// ==========================================
+// 
 // 1. OBTENER TODOS LOS USUARIOS (GET /api/users)
-// ==========================================
+// 
 router.get('/', verifyAdmin, async (req, res) => {
   try {
-    // Excluimos las contraseñas por seguridad al enviar la lista al frontend
+    // Excluye las contraseñas por seguridad al enviar la lista al frontend
     const users = await User.find({}, '-password').sort({ createdAt: -1 });
     res.json(users);
   } catch (err) {
@@ -46,10 +46,10 @@ router.get('/', verifyAdmin, async (req, res) => {
   }
 });
 
-// ==========================================
-// 2. ACTUALIZAR ESTADO O ROL (PUT /api/users/:id)
+// 
+// 2. ACTUALIZA EL ESTADO O ROL (PUT /api/users/:id)
 // Útil para aprobar cuentas (Pending -> Active) o cambiar roles
-// ==========================================
+// 
 router.put('/:id', verifyAdmin, async (req, res) => {
   try {
     const { id } = req.params;
@@ -81,14 +81,14 @@ router.put('/:id', verifyAdmin, async (req, res) => {
   }
 });
 
-// ==========================================
-// 3. ELIMINAR USUARIO (DELETE /api/users/:id)
-// ==========================================
+// 
+// 3. ELIMINA USUARIO (DELETE /api/users/:id)
+// 
 router.delete('/:id', verifyAdmin, async (req, res) => {
   try {
     const { id } = req.params;
 
-    // Evitar que el administrador se auto-elimine por accidente
+    // Evita que el administrador se auto-elimine por accidente
     if (req.user._id.toString() === id) {
       return res.status(400).json({ error: 'No puedes eliminar tu propia cuenta de administrador principal.' });
     }

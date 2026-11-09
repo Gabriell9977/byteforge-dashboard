@@ -28,7 +28,7 @@ function Settings() {
     const updatedUsers = storedUsers.map(u => u.email === currentUser.email ? updatedUser : u);
     localStorage.setItem('byteforge_system_users', JSON.stringify(updatedUsers));
 
-    // Usamos la llave directa para mantener la reactividad del idioma
+    // Usa la llave directa para mantener la reactividad del idioma
     setToastMessage('settingsSavedMsg');
   };
 

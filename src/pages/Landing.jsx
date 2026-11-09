@@ -7,7 +7,7 @@ function Landing() {
   return (
     <div className="min-h-[100dvh] w-full max-w-[100vw] overflow-x-hidden bg-[#0a0d14] text-slate-100 font-sans selection:bg-indigo-500 selection:text-white relative">
       
-      {/* ================= BACKGROUND CON ANIMACIÓN DE NEÓN FLUIDA ================= */}
+      {/*  BACKGROUND CON ANIMACIÓN DE NEÓN FLUIDA  */}
       <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
         {/* Gradiente animado principal de fondo */}
         <div className="absolute -top-[40%] -left-[20%] w-[140%] h-[140%] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-900/30 via-purple-900/20 to-[#0a0d14] animate-pulse duration-1000" />

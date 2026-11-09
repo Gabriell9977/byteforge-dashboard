@@ -16,12 +16,12 @@ function Billing() {
   const { t } = useLanguage();
 
   const handleDownload = (id) => {
-    // Pasamos la llave base y el ID como un objeto o string dinámico que el Toast procesará
+    // Pasa la llave base y el ID como un objeto o string dinámico que el Toast procesará
     setToastMessage(`downloadingInvoiceMsg:${id}`);
   };
 
   const handleUpgrade = () => {
-    // Pasamos directamente la llave de traducción
+    // Pasa directamente la llave de traducción
     setToastMessage('subscriptionUpgradedMsg');
   };
 
@@ -52,7 +52,7 @@ function Billing() {
           </div>
         </div>
 
-        {/* Método de pago con icono MasterCard real */}
+        {/* Método de pago */}
         <div className="bg-white dark:bg-[#1e293b]/75 border border-slate-200 dark:border-slate-700/50 p-6 rounded-2xl shadow-xl backdrop-blur-md flex flex-col justify-between space-y-4">
           <div>
             <h2 className="text-base font-bold text-slate-900 dark:text-white">{t('paymentMethodTitle') || 'Payment Method'}</h2>

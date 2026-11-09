@@ -14,7 +14,7 @@ import Settings from './pages/Settings';
 import './App.css';
 
 function App() {
-  // Inicializamos darkMode desde localStorage (por defecto true/dark)
+  // Inicializa darkMode desde localStorage (por defecto true/dark)
   const [darkMode, setDarkMode] = useState(() => {
     const saved = localStorage.getItem('byteforge_theme');
     return saved !== null ? JSON.parse(saved) : true;
@@ -22,7 +22,7 @@ function App() {
 
   const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('token'));
 
-  // Sincronizamos con localStorage y la clase "dark" del HTML
+  // Sincroniza con localStorage y la clase "dark" del HTML
   useEffect(() => {
     localStorage.setItem('byteforge_theme', JSON.stringify(darkMode));
     if (darkMode) {
